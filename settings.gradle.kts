@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "lic-list"
-include("modules:api")
+include("projects:api")
