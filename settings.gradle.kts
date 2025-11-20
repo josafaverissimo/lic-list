@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "lic-list"
-include("projects:api")
+include("projects:api", "projects:crawlers")
