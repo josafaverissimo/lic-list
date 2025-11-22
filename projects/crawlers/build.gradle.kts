@@ -8,11 +8,18 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.flywaydb.flyway") version "11.17.0"
 }
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+}
+
+buildscript {
+  dependencies {
+    classpath("org.flywaydb:flyway-database-postgresql:11.17.0")
+  }
 }
 
 dependencies {
@@ -43,6 +50,15 @@ java {
         languageVersion = JavaLanguageVersion.of(24)
     }
 }
+
+flyway {
+  url = System.getenv("DB_URL")
+  user = System.getenv("DB_USER")
+  password = System.getenv("DB_PASSWORD")
+  schemas = arrayOf("public")
+  placeholders = mapOf("schema" to "public")
+}
+
 
 application {
     // Define the main class for the application.
