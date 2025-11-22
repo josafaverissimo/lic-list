@@ -9,7 +9,7 @@ public class TceRsCrawler implements Crawler {
   private Logger logger = LoggerFactory.getLogger(TceRsCrawler.class);
 
   @Inject
-  TceRsCrawler() {}
+  public TceRsCrawler() {}
 
   public void run() {
     logger.info("Running TceRs Crawler");
