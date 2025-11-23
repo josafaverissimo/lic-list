@@ -26,7 +26,7 @@ public class Bidding {
   private int amount;
 
   @Column(name = "amount_scale")
-  private Short amountScale;
+  private short amountScale;
 
   @Column(name = "created_at", insertable = false, updatable = false)
   private ZonedDateTime createdAt;
