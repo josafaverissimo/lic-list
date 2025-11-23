@@ -42,6 +42,8 @@ dependencies {
     annotationProcessor(libs.hibernate.processor)
     
     implementation(libs.postgresql)
+
+    implementation(libs.cuid)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

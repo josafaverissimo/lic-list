@@ -15,6 +15,7 @@ hibernate-scan-jandex = "7.1.7.Final"
 hibernate-processor = "7.1.7.Final"
 hibernate-core = "7.1.7.Final"
 postgresql = '42.7.8'
+cuid = '2.0.5'
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
@@ -30,3 +31,4 @@ hibernate-scan-jandex = { module = "org.hibernate.orm:hibernate-scan-jandex", ve
 hibernate-processor = { module = "org.hibernate.orm:hibernate-processor", version.ref = "hibernate-processor" }
 hibernate-core = { module = "org.hibernate.orm:hibernate-core", version.ref = "hibernate-core" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql"}
+cuid = { module = "io.github.thibaultmeyer:cuid", version.ref = "cuid" }
