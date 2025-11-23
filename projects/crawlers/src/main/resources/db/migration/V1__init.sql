@@ -1,12 +1,12 @@
 create table liclist_biddings_sources (
   id varchar(100) PRIMARY KEY,
-  name varchar(50) NOT NULL,
+  name varchar(50) NOT NULL UNIQUE,
   created_at TIMESTAMPTZ(3) NOT NULL DEFAULT NOW()
 );
 
 create table liclist_biddings (
   id varchar(100) PRIMARY KEY,
-  code varchar(200) NOT NULL,
+  code varchar(200) NOT NULL UNIQUE,
   bidding_source_id varchar(100) NOT NULL,
   description TEXT NOT NULL,
   amount bigint NOT NULL,
@@ -20,6 +20,7 @@ create table liclist_biddings (
 
 create table liclist_biddings_items (
   id varchar(100) PRIMARY KEY,
+  code varchar(100) NOT NULL,
   description TEXT NOT NULL,
   bidding_id varchar(100) NOT NULL,
   quantity int NOT NULL,
