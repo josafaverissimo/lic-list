@@ -1,6 +1,8 @@
 package com.liclist.crawlers.modules.commons.entities;
 
 import java.time.ZonedDateTime;
+
+import io.github.thibaultmeyer.cuid.CUID;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +23,7 @@ public class Bidding {
 
   private String description;
 
-  private Integer amount;
+  private int amount;
 
   @Column(name = "amount_scale")
   private Short amountScale;
@@ -36,8 +38,17 @@ public class Bidding {
   public Bidding() {
   }
 
-  public Bidding(String code) {
-
+  public Bidding(
+      String code,
+      String description,
+      int amount,
+      short amountScale,
+      BiddingSource biddingSource) {
+    this.id = CUID.randomCUID2().toString();
+    this.description = description;
+    this.amount = amount;
+    this.amountScale = amountScale;
+    this.biddingSource = biddingSource;
   }
 
   public String getId() {
