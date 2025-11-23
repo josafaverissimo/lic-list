@@ -1,11 +1,14 @@
 package com.liclist.crawlers.di;
 
-import com.liclist.crawlers.modules.tcers.TceRsCrawler;
+import com.liclist.crawlers.modules.commons.Crawlers;
+import com.liclist.crawlers.modules.commons.database.seeds.Seeds;
+
 import dagger.Component;
 import jakarta.inject.Singleton;
 
 @Singleton
-@Component
+@Component(modules = { DatabaseModule.class })
 public interface AppComponent {
-  TceRsCrawler tceRsCrawler();
+  Seeds seeds();
+  Crawlers crawlers();
 }
