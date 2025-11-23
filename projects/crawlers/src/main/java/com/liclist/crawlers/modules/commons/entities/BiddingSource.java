@@ -20,7 +20,7 @@ public class BiddingSource {
   @Basic(optional = false)
   private String name;
 
-  @Column(name = "created_at", insertable = false, updatable = false, unique = true)
+  @Column(name = "created_at", insertable = false, updatable = false)
   private ZonedDateTime createdAt;
 
   @OneToMany(mappedBy = Bidding_.BIDDING_SOURCE)
