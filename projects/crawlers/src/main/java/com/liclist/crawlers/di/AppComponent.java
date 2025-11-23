@@ -7,7 +7,7 @@ import dagger.Component;
 import jakarta.inject.Singleton;
 
 @Singleton
-@Component(modules = { DatabaseModule.class })
+@Component(modules = { ProviderModule.class })
 public interface AppComponent {
   Seeds seeds();
   Crawlers crawlers();
