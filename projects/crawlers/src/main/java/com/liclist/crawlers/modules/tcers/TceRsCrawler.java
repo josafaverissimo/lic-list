@@ -12,6 +12,6 @@ public class TceRsCrawler implements Crawler {
   public TceRsCrawler() {}
 
   public void run() {
-    logger.info("Running TceRs Crawler");
+    logger.info("Running Tce/RS Crawler");
   }
 }
