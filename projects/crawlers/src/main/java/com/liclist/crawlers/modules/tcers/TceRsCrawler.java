@@ -6,12 +6,18 @@ import com.liclist.crawlers.modules.commons.interfaces.Crawler;
 import jakarta.inject.Inject;
 
 public class TceRsCrawler implements Crawler {
-  private Logger logger = LoggerFactory.getLogger(TceRsCrawler.class);
+  private final Logger logger = LoggerFactory.getLogger(TceRsCrawler.class);
+
+  private final TceRsSource tceRsSource;
 
   @Inject
-  public TceRsCrawler() {}
+  public TceRsCrawler(TceRsSource tceRsSource) {
+    this.tceRsSource = tceRsSource;
+  }
 
   public void run() {
     logger.info("Running Tce/RS Crawler");
+
+    this.tceRsSource.storeData();
   }
 }
