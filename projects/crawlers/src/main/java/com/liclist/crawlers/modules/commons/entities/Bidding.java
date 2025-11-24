@@ -2,7 +2,13 @@ package com.liclist.crawlers.modules.commons.entities;
 
 import java.time.ZonedDateTime;
 
+import org.hibernate.SessionFactory;
+
+import com.liclist.crawlers.modules.commons.database.Database;
+import com.liclist.crawlers.modules.tcers.dtos.BiddingDto;
+
 import io.github.thibaultmeyer.cuid.CUID;
+import jakarta.inject.Inject;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,16 +44,12 @@ public class Bidding {
   public Bidding() {
   }
 
-  public Bidding(
-      String code,
-      String description,
-      int amount,
-      short amountScale,
-      BiddingSource biddingSource) {
+  public Bidding(BiddingDto biddingDto, BiddingSource biddingSource) {
     this.id = CUID.randomCUID2().toString();
-    this.description = description;
-    this.amount = amount;
-    this.amountScale = amountScale;
+    this.code = biddingDto.code();
+    this.description = biddingDto.description();
+    this.amount = biddingDto.amount();
+    this.amountScale = biddingDto.amountScale();
     this.biddingSource = biddingSource;
   }
 

@@ -9,8 +9,8 @@ create table liclist_biddings (
   code varchar(200) NOT NULL UNIQUE,
   bidding_source_id varchar(100) NOT NULL,
   description TEXT NOT NULL,
-  amount bigint NOT NULL,
-  amount_scale smallint NOT NULL,
+  amount bigint,
+  amount_scale smallint,
   created_at TIMESTAMPTZ(3) NOT NULL DEFAULT NOW(),
 
   FOREIGN KEY (bidding_source_id)
