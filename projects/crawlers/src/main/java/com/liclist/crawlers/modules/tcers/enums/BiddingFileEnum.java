@@ -1,7 +1,8 @@
 package com.liclist.crawlers.modules.tcers.enums;
 
 public enum BiddingFileEnum {
-  BIDDING("licitacao.csv");
+  BIDDING("licitacao.csv"),
+  BIDDING_ITEM("item.csv");
 
   private final String filename;
 
