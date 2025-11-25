@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.liclist.crawlers.modules.commons.Env;
 import com.liclist.crawlers.modules.commons.enums.EnvEnum;
 import com.liclist.crawlers.modules.tcers.enums.BiddingFileEnum;
+import com.liclist.crawlers.modules.tcers.processors.BiddingItemProcessor;
 import com.liclist.crawlers.modules.tcers.processors.BiddingProcessor;
 
 import jakarta.inject.Inject;
@@ -30,10 +31,14 @@ public class TceRsSource {
 
   private final BiddingProcessor biddingProcessor;
 
+  private final BiddingItemProcessor biddingItemProcessor;
+
   @Inject
-  public TceRsSource(HttpClient httpClient, BiddingProcessor biddingProcessor) {
+  public TceRsSource(HttpClient httpClient, BiddingProcessor biddingProcessor,
+    BiddingItemProcessor biddingItemProcessor) {
     this.httpClient = httpClient;
     this.biddingProcessor = biddingProcessor;
+    this.biddingItemProcessor = biddingItemProcessor;
   }
 
   private ZipInputStream fetchFile() throws IOException, InterruptedException {
@@ -57,12 +62,22 @@ public class TceRsSource {
 
       while ((zipEntry = zipInputStream.getNextEntry()) != null) {
         BufferedReader bufferedReader;
+        var inputStream = new InputStreamReader(zipInputStream);
 
         if (zipEntry.getName().equals(BiddingFileEnum.BIDDING.getFilename())) {
-          bufferedReader =
-            new BufferedReader(new InputStreamReader(zipInputStream));
+          bufferedReader = new BufferedReader(inputStream);
 
           this.biddingProcessor.processCsv(bufferedReader);
+
+          continue;
+        }
+
+        if (zipEntry
+          .getName()
+          .equals(BiddingFileEnum.BIDDING_ITEM.getFilename())) {
+          bufferedReader = new BufferedReader(inputStream);
+
+          this.biddingItemProcessor.processCsv(bufferedReader);
         }
       }
 
