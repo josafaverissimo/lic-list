@@ -22,6 +22,7 @@ import com.liclist.crawlers.modules.commons.Env;
 import com.liclist.crawlers.modules.commons.enums.EnvEnum;
 import com.liclist.crawlers.modules.tcers.dtos.BiddingDto;
 import com.liclist.crawlers.modules.tcers.enums.BiddingCsvColumnEnum;
+import com.liclist.crawlers.modules.tcers.enums.BiddingFileEnum;
 import com.liclist.crawlers.modules.tcers.repositories.BiddingsRepository;
 
 import jakarta.inject.Inject;
@@ -154,7 +155,7 @@ public class TceRsSource {
       while ((zipEntry = zipInputStream.getNextEntry()) != null) {
         BufferedReader bufferedReader;
 
-        if (zipEntry.getName().equals("licitacao.csv")) {
+        if (zipEntry.getName().equals(BiddingFileEnum.BIDDING.getFilename())) {
           bufferedReader =
             new BufferedReader(new InputStreamReader(zipInputStream));
 
