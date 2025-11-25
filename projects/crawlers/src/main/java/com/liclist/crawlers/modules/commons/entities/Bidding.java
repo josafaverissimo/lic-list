@@ -2,13 +2,9 @@ package com.liclist.crawlers.modules.commons.entities;
 
 import java.time.ZonedDateTime;
 
-import org.hibernate.SessionFactory;
-
-import com.liclist.crawlers.modules.commons.database.Database;
 import com.liclist.crawlers.modules.tcers.dtos.BiddingDto;
 
 import io.github.thibaultmeyer.cuid.CUID;
-import jakarta.inject.Inject;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,10 +25,10 @@ public class Bidding {
 
   private String description;
 
-  private int amount;
+  private Integer amount;
 
   @Column(name = "amount_scale")
-  private short amountScale;
+  private Short amountScale;
 
   @Column(name = "created_at", insertable = false, updatable = false)
   private ZonedDateTime createdAt;
