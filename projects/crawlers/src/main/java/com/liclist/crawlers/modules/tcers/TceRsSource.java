@@ -67,7 +67,7 @@ public class TceRsSource {
         if (zipEntry.getName().equals(BiddingFileEnum.BIDDING.getFilename())) {
           bufferedReader = new BufferedReader(inputStream);
 
-          this.biddingProcessor.processCsv(bufferedReader);
+          // this.biddingProcessor.processCsv(bufferedReader);
 
           continue;
         }
