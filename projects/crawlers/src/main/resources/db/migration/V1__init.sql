@@ -23,7 +23,7 @@ create table liclist_biddings_items (
   code varchar(100) NOT NULL,
   description TEXT NOT NULL,
   bidding_id varchar(100) NOT NULL,
-  quantity int NOT NULL,
+  quantity varchar(100) NOT NULL,
   unit_amount bigint NOT NULL,
   unit_amount_scale smallint NOT NULL,
   metric_unit varchar(50) NOT NULL,
