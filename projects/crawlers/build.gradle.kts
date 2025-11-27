@@ -9,6 +9,13 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("org.flywaydb.flyway") version "11.17.0"
+    id("com.diffplug.spotless") version "8.1.0"
+}
+
+spotless {
+  java {
+    palantirJavaFormat()
+  }
 }
 
 repositories {
