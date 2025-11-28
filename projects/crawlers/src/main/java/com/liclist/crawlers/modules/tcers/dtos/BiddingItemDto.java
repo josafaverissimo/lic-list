@@ -11,7 +11,7 @@ public record BiddingItemDto(
         String itemMetricUnit,
         double itemAmount) {
     public String code() {
-        return String.format("%s.%s.%s-%s_%d", agencyCode, biddingNumber, biddingYear, biddingModality, itemNumber);
+        return String.format("%s.%s.%s-%s_%s", agencyCode, biddingNumber, biddingYear, biddingModality, itemNumber);
     }
 
     public int amountScale() {

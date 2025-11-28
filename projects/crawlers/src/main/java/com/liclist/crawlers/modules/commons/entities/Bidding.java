@@ -1,9 +1,6 @@
 package com.liclist.crawlers.modules.commons.entities;
 
-import java.time.ZonedDateTime;
-
 import com.liclist.crawlers.modules.tcers.dtos.BiddingDto;
-
 import io.github.thibaultmeyer.cuid.CUID;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -12,64 +9,77 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.ZonedDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "liclist_biddings")
 public class Bidding {
-  @Id
-  private String id;
+    @Id
+    private String id;
 
-  @Basic(optional = false)
-  private String code;
+    @Basic(optional = false)
+    private String code;
 
-  private String description;
+    private String description;
 
-  private Integer amount;
+    private Integer amount;
 
-  @Column(name = "amount_scale")
-  private Short amountScale;
+    @Column(name = "amount_scale")
+    private Short amountScale;
 
-  @Column(name = "created_at", insertable = false, updatable = false)
-  private ZonedDateTime createdAt;
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private ZonedDateTime createdAt;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "bidding_source_id", nullable = false)
-  private BiddingSource biddingSource;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "bidding_source_id", nullable = false)
+    private BiddingSource biddingSource;
 
-  public Bidding() {
-  }
+    @OneToMany(mappedBy = BiddingItem_.BIDDING)
+    private Set<BiddingItem> biddingItems;
 
-  public Bidding(BiddingDto biddingDto, BiddingSource biddingSource) {
-    this.id = CUID.randomCUID2().toString();
-    this.code = biddingDto.code();
-    this.description = biddingDto.description();
-    this.amount = biddingDto.amount();
-    this.amountScale = biddingDto.amountScale();
-    this.biddingSource = biddingSource;
-  }
+    public Bidding() {}
 
-  public String getId() {
-    return id;
-  }
+    public Bidding(BiddingDto biddingDto, BiddingSource biddingSource) {
+        this.id = CUID.randomCUID2().toString();
+        this.code = biddingDto.code();
+        this.description = biddingDto.description();
+        this.amount = biddingDto.amount();
+        this.amountScale = biddingDto.amountScale();
+        this.biddingSource = biddingSource;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public String getCode() {
+        return code;
+    }
 
-  public Integer getAmount() {
-    return amount;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public Short getAmountScale() {
-    return amountScale;
-  }
+    public Integer getAmount() {
+        return amount;
+    }
 
-  public ZonedDateTime getCreatedAt() {
-    return createdAt;
-  }
+    public Short getAmountScale() {
+        return amountScale;
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public BiddingSource getBiddingSource() {
+        return biddingSource;
+    }
+
+    public Set<BiddingItem> getBiddingItems() {
+        return biddingItems;
+    }
 }
